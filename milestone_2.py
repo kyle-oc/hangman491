@@ -15,11 +15,3 @@ def random_word():
 # else:
 #     print(guess)
 
-
-if __name__ == "__main__":
-    user_guess = input("Please enter your guess: ")
-    if len(user_guess) == 1 and user_guess.isalnum:
-        print("Good guess!")
-    else:
-        print("Oops! That is not a valid input")
-
