@@ -13,8 +13,8 @@ by incorrectly guessing 5 times.
 File Structure
 1. Main file is milestone_4.py, which contains a class for the game. The class contains methods for getting input from the user, and for then
 checking the validity of the guess, along with checking if the guessed letter is in the word. The word is selected randomly from a list in the
-milestone_2.py file. Some features need to be finalised, as the game will keep running indefinitely (the game should cease when the letters
-variable reaches zero, or when the num_lives variable reaches zero). This will be fixed in next update.
+milestone_2.py file. Some known bugs still to be fixed: the game sometimes accepts entry of more than one character, and can terminate the game
+early as a result of prematurely thinking the user has guessed the full word. This will be fixed in next update.
 
 Licence Information
 1. TBC
