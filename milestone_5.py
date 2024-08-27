@@ -17,8 +17,6 @@ class Hangman():
 
         num_lives (int): The number of lives the player has remaining (initialised to 5 at the beginning of the game).
 
-        word_list (list): A list of words from which the word to be guessed is randomly selected from.
-
         list_of_guesses (list): A list of guesses that have already been tried. Initialised to an empty list and appended to as the
         user inputs incorrect guesses.
 
@@ -33,6 +31,12 @@ class Hangman():
         Prompts the user to input their guess. It then checks that the value is a single, alphanumerical character. The elif statement
         checks the input against the list_of_guesses, and if True it tells the user they have already guessed that letter. The else
         clause calls the check_guess function and appends the guess to the list_of_guesses list.
+
+    play_game():
+        Starts game, and manages end states when user wins or loses.
+
+        Runs loop whilst game state is in play by checking that num_lives and letters variables are not equal to zero, if either are,
+        then the game is terminated using break statement. Otherwise the ask_for_input method is called.
     """
         
     def __init__(self, word, num_lives=5):
@@ -134,6 +138,18 @@ class Hangman():
 
 
     def play_game(self): 
+        """
+        Starts game, and manages end states when user wins or loses.
+
+        Runs loop whilst game state is in play by checking that num_lives and letters variables are not equal to zero, if either are,
+        then the game is terminated using break statement. Otherwise the ask_for_input method is called.
+        
+        Returns
+        -------
+        None
+            This method does not return anything. It checks game state and acts accordingly.
+            """
+
         while True:
             if self.num_lives == 0:
                 print("You lost!")
