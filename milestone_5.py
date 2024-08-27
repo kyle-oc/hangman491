@@ -1,4 +1,3 @@
-import milestone_2
 from milestone_2 import random_word
 word_to_be_guessed = random_word()
 
@@ -79,24 +78,31 @@ class Hangman():
 
         Returns
         -------
-        None
-            This method does not return anything. It directly modifies the object's state (word_guessed, num_letters, and num_lives).
+        bool
+            Returns True if the game should end (either win or loss). False otherwise.
             """
         guess = guess.lower()
         if guess in self.word:
             print(f"Good guess! {guess} is in the word.")
+            self.letters -= 1
             for index, letter in enumerate(self.word):
                 if guess == self.word[index]:
                     self.word_guessed[index] = letter
-                    print(self.word_guessed)
-                    self.letters -= 1
+            print(self.word_guessed)
+            if self.letters == 0:
+                print("Well done! You guessed the word!")
+                return True # game ends due to winning
         else:
-            print(f"Sorry, {guess} is not in the word")
             self.num_lives -= 1
+            print(f"Sorry, {guess} is not in the word")
             print(f"You have {self.num_lives} lives remaining")
-
+            if self.num_lives == 0:
+                print("Sorry, you ran out of lives")
+                print(f"The word was {self.word}")
+                return True # game ends due to losing
+        return False # game continues
     
-    def ask_for_input(self, num_lives, num_letters):
+    def ask_for_input(self):
         """
         Prompts and validates the user's guess.
 
@@ -113,36 +119,32 @@ class Hangman():
             This method does not return anything. It directly modifies the object's state (list_of_guesses) and passes the guess to the
             check_guess method.
             """
-        # while self.num_lives != 0 or self.letters != 0:
-        while num_lives == 0 or num_letters == 0:
-            guess = input("Please enter your guess: ")
-            if len(guess) != 1 and not guess.isalnum():
-                print("Invalid letter. Please enter a single alphabetical character.")
-            elif len(guess) == 1 and guess.isalnum() and guess in self.list_of_guesses:
-                print("You already tried that letter!")
-            elif len(guess) == 1 and guess.isalnum():
-                self.check_guess(guess)
-                self.list_of_guesses.append(guess)
 
-            # TODO: some bugs to be rectified. Code sometimes accepts entry of more than one character, and issue with terminating
-            # game too early when letters is incorrectly decremented to zero.
-
-
-    def play_game(word_list):
-        num_lives = 5
-        num_letters = len(set(word_list))
-        game = Hangman(word_list, num_lives)
         while True:
-            if num_lives == 0:
+            guess = input("Please enter your guess: ")
+            if len(guess) != 1 or not guess.isalnum():
+                print("Invalid letter. Please enter a single alphabetical character.")
+            elif guess in self.list_of_guesses:
+                print("You already tried that letter!")
+            else:
+                self.list_of_guesses.append(guess)
+                game_over = self.check_guess(guess)
+                if game_over:
+                    break # exit loop if game over is True
+
+
+    def play_game(self): 
+        while True:
+            if self.num_lives == 0:
                 print("You lost!")
                 break
-            elif num_letters > 0:
-                # num_lives, num_letters = game.ask_for_input(num_lives, num_letters)
-                barry = game.ask_for_input(num_lives, num_letters)
-                barry()
-            else:
-                print("Congratulations! You won the game!")
+            elif self.letters == 0:
+                print("Congratulations! You won the game!") 
                 break
+            else:
+                self.ask_for_input()
 
 
-giblet = Hangman.play_game("wanker")
+player_1 = Hangman(word_to_be_guessed)
+
+player_1.play_game()

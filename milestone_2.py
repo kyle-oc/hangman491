@@ -1,9 +1,7 @@
 def random_word():
     import random
     word_list = ["bananas", "blueberries", "oranges", "mangos", "watermelon"]
-    print(word_list)
     random_word = random.choice(word_list)
-    print(random_word)
     return random_word
 
 

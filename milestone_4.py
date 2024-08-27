@@ -99,6 +99,7 @@ class Hangman():
             print(f"You have {self.num_lives} lives remaining")
             if self.num_lives == 0:
                 print("Sorry, you ran out of lives")
+                print(f"The word was {self.word}")
                 return True # game ends due to losing
         return False # game continues
     
