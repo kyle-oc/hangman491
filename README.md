@@ -11,8 +11,8 @@ Usage Instructions
 by incorrectly guessing 5 times.
 
 File Structure
-1. Main file is milestone_5.py, which contains a class for the game. The class contains methods for starting the game, getting input from the user, and for checking
-the validity and accuracy of the guess. The word is selected randomly from a short list of fruits in the milestone_2.py file. 
+1. Main file is milestone_5.py, which contains a class for the game. The class contains methods for starting the game, getting input from the user,
+and for checking the validity and accuracy of the guess. The word is selected randomly from a short list of fruits in the milestone_2.py file. 
 
 Licence Information
 1. This project is licensed under the MIT License - see the licence.md file for details.
